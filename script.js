@@ -22,8 +22,14 @@ class ScriptRemote {
         value.once('value',function(isActive) {
             if(isActive.val()) {
                 db.ref('/isActive').set(false); 
+                document.querySelector('#letsGo').style.height = "220px";
+                document.querySelector('#letsGo').style.width = "220px";
+                
             } else {
                 db.ref('/isActive').set(true);
+
+                document.querySelector('#letsGo').style.height = "200px";
+                document.querySelector('#letsGo').style.width = "200px";
             }
         })
         console.log('done!')
