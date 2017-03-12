@@ -14,24 +14,24 @@ class ScriptRemote {
 
         firebase.initializeApp(config);
         document.querySelector("#letsGo").onclick = this.enterTheVoid;
-        }
+
+    }
 
     enterTheVoid() {
         let db = firebase.database();
         let value = db.ref('/isActive');
-        value.once('value',function(isActive) {
-            if(isActive.val()) {
-                db.ref('/isActive').set(false); 
-                document.querySelector('#letsGo').style.height = "220px";
-                document.querySelector('#letsGo').style.width = "220px";
-                
+
+        value.once('value', function (isActive) {
+            if (isActive.val()) {
+                db.ref('/isActive').set(false);
             } else {
                 db.ref('/isActive').set(true);
-
-                document.querySelector('#letsGo').style.height = "200px";
-                document.querySelector('#letsGo').style.width = "200px";
             }
         })
+        document.querySelector("#letsGo").classList.add("gray")
+        setTimeout(() => {
+            document.querySelector("#letsGo").classList.remove("gray")
+        }, 1000)
         console.log('done!')
     }
 }
